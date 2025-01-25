@@ -1,0 +1,50 @@
+:root{
+    --darkBG: rgb(93, 22, 160);
+    --lightText: rgb(229, 214, 247);
+    --notSelected: rgb(216, 216, 216);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background: none;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    background-color: var(--darkBG);
+    color: var(--lightText);
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.human, .computer {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-choice > img {
+    border: 10px solid var(--notSelected);
+    width: 100px;
+    height: 100px;
+}

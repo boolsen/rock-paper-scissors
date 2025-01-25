@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />  
 </head>
 <body>
+    <div class="header">
+        <div class="header-text">
+            <h1>Rock, Paper, Scissors</h1>
+        </div>
+        <div class="restart-btn">
+            <button>restart</button>
+        </div>
+
+    </div>
+    <div class="score-view">
+        <div class="score-header"></div>
+        <div class="human"></div>
+        <div class="computer"></div>
+
+    </div>
+    <div class="controls">
+        <div class="human">
+            <h2>Player choice:</h2>
+            <button class="player-choice rock" id="rock"><img src="/img/rock.jpg"></button>
+            <button class="player-choice paper" id="paper"><img src="/img/paper.jpg"></button>
+            <button class="player-choice scissors" id="scissors"><img src="/img/scissors.jpg"></button>
+        </div>
+        <div class="computer">
+            <h2>Computer choice:</h2>
+            <img id="computer-choice-image">
+        </div>
+        
+    </div>
+    <div class="footer">
+
+    </div>
+
     
 </body>
 </html>
