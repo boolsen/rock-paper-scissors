@@ -1,104 +1,106 @@
-function getComputerChoice() {
-    let computerChoice;
-    choiceArray = ["ROCK", "PAPER", "SCISSORS"];
-    computerChoice = choiceArray[parseInt(Math.random() * 3)];
-    return computerChoice;
-}
+let playerChoice;
+let computerChoice;
+let score;
+let imagePathArray = ["/img/rock.jpg","/img/paper.jpg","/img/scissors.jpg","/img/questionmark.png"];
 
-function testComputerChoice() {
-    let arr = [0,0,0,0]
-    for (let i = 0; i< 10000; i++) {
-        value = getComputerChoice();
+let scoreTextHuman;
+let scoreTextComputer;
+let winnerText;
+let computerImage;
+let humanScore = 0;
+let computerScore = 0;
 
-        if (value === "Rock")
-            arr[0]++;
-        else if (value === "Paper") {
-            arr[1]++;
-        }
-        else if (value === "Scissors") {
-            arr[2]++;
-        }
-        else {
-            arr[3]++;
-        }
-    }
+const playRound = function (element) {
+    resetBorders();
+    playerChoice = parseInt(element.value);
+    let child = element.firstElementChild;
+    let selectedBorder = "10px solid var(--darkBG)";
+    changeBorder(child, selectedBorder);
 
-    console.log("Rock: " + arr[0] + " | " + "Paper: " + arr[1] + " | " + "Scissors: " + arr[2] + " | " + "Undef: " + arr[3] + " | ");
-}
+    computerChoice = getComputerChoice();
+    updateComputerImg(computerChoice);
 
-function getHumanChoice() {
-    let humanchoice;
-    do {
-        humanchoice = prompt("Choose Rock, Paper or scissors: ").toUpperCase();
-    } while (humanchoice !== "ROCK" && humanchoice !== "PAPER" && humanchoice !== "SCISSORS")
+    changeBorder(computerImage, selectedBorder);
 
-    return humanchoice;    
-}
-
-function getResult(humanChoice, computerChoice) {
-    let humanWin = false;
-    let scoreDict = {"ROCK": 0,"SCISSORS":1,"PAPER":2}
-
-    let computerNum = scoreDict[computerChoice];
-    let humanNum = scoreDict[humanChoice];
-
-    let roundScore = (humanNum - computerNum + 3) % 3;
-
-    if (roundScore === 2) {
-        humanWin = true;
-    }
-
-    return humanWin;
-}
-
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    let rounds = 5;
-
-    function playRound() {
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
-        let msgText = "";    
-    
-        if (computerChoice === humanChoice) {
-            console.log("Draw!");
-            return;
-        }
-    
-        let humanWin = getResult(humanChoice,computerChoice);
-    
-        if (humanWin) {
-            msgText = `You win! ${humanChoice} beats ${computerChoice}.`;
-            humanScore++;
-            
+    let roundScore = getResult(playerChoice, computerChoice);
+    updateScore(roundScore);
+    updateWinnerText(roundScore);
+    if (humanScore >= 5 || computerScore >= 5) {
+        let gameWinner;
+        if (humanScore > computerScore) {
+            gameWinner = 'Human'
         }
         else {
-            msgText = `You loose! ${computerChoice} beats ${humanChoice}.`;
-            computerScore++;
+            gameWinner = 'Computer'
         }
-        console.log(msgText);
+        alert(`The first to 5 wins is: ${gameWinner}!!`);
     }
+}
 
-    for (let i = 0; i < 5; i++) {
-        playRound();
+const resetBorders = function () {
+    let notSelected = "10px solid var(--notSelected)";
+    for (element of playerChoices) {
+        changeBorder(element, notSelected);
     }
+}
 
-    let winnerText = ""
+const changeBorder = function (element, newValue) {
+    element.style.border = newValue;
+}
 
-    if (humanScore > computerScore) {
-        winnerText = "You win!";
+const updateComputerImg = function (computerChoice) {
+    let computerImgPath = imagePathArray[computerChoice];
+    computerImage.src = computerImgPath;    
+}
+
+const updateScore = function (humanWin) {
+    let winnerScoreText = null;
+    if (humanWin > 0) {
+        winnerScoreText = scoreTextHuman;
+        humanScore++;
+        winnerScore = humanScore;
     }
-    else if (humanScore < computerScore) {
-        winnerText = "Computer win!";
+    else if (humanWin < 0) {
+        winnerScoreText = scoreTextComputer;      
+        computerScore++;
+        winnerScore = computerScore;
     }
     else {
-        winnerText = "It's a draw!";
+        winnerScoreText = null;
     }
 
-    let finalScoreText = `Human: ${humanScore} points, Computer: ${computerScore} points. ${winnerText}`;
-    console.log(finalScoreText);
+    if (winnerScoreText) {
+        winnerScoreText.textContent = winnerScore;
+    }
+}
 
-    return;
+const updateWinnerText = function (score) {
+    let winner;
+    if (score === 1) {
+        winner = 'Human wins!!!';
+    }
+    else if (score === -1) {
+        winner = 'Computer wins!'
+    }
+    else {
+        winner = 'Draw...'
+    }
+    let winnerStr = `Round result: ${winner}!!`
 
-}  
+    winnerText.textContent = winnerStr;
+}
+
+const restartGame = function () {
+    scoreTextHuman.textContent = 0;
+    scoreTextComputer.textContent = 0;
+    let borderStyle = "10px solid var(--notSelected)";
+    resetBorders();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    scoreTextHuman = document.querySelector(".player-score-text");
+    scoreTextComputer = document.querySelector(".computer-score-text");
+    winnerText = document.querySelector(".winner-text");
+    computerImage = document.querySelector("#computer-choice-image");
+    playerChoices = document.querySelectorAll(".player-choices,#computer-choice-image");
+});

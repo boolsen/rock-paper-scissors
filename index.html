@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="javascript.js"></script>
+    <script src="functions.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -16,8 +17,8 @@
         <div class="header-text">
             <h1>Rock, Paper, Scissors</h1>
         </div>
-        <div class="restart-btn">
-            <button>restart</button>
+        <div>
+            <button class="restart-btn" onclick="restartGame()">restart</button>
         </div>
 
     </div>
@@ -36,9 +37,15 @@
         <div class="controls row">
             <div class="human column">
                 <h2>Player choice:</h2>
-                <button class="player-choice rock" id="rock"><img src="/img/rock.jpg"></button>
-                <button class="player-choice paper" id="paper"><img src="/img/paper.jpg"></button>
-                <button class="player-choice scissors" id="scissors"><img src="/img/scissors.jpg"></button>
+                <button class="player-choice rock" id="rock" value="0" onclick="playRound(this)">
+                    <img class="player-choices" src="/img/rock.jpg">
+                </button>
+                <button class="player-choice paper" id="paper" value="1" onclick="playRound(this)">
+                    <img class="player-choices" src="/img/paper.jpg">
+                </button>
+                <button class="player-choice scissors" id="scissors" value="2" onclick="playRound(this)">
+                    <img class="player-choices" src="/img/scissors.jpg">
+                </button>
             </div>
             <div class="seperator column"><em>Vs.</em></div>
             <div class="computer column">
@@ -46,6 +53,7 @@
                 <div class="computer-choice column"><img id="computer-choice-image" src="/img/questionmark.png"></div>
             </div>
         </div>
+        <h1 class="winner-text"></h1>
     </div>
     <div class="footer row">
         Images sourced from freely availble assets
