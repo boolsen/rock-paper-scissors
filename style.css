@@ -8,12 +8,23 @@
     margin: 0;
     padding: 0;
     border: 0;
+    text-align: center;
+    font-family: Rubik, sans-serif;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    height: 100vh;
 }
 
 button {
@@ -22,8 +33,6 @@ button {
 
 .header{
     width: 100%;
-    display: flex;
-    flex-direction: row;
     height: 100px;
     background-color: var(--darkBG);
     color: var(--lightText);
@@ -32,19 +41,61 @@ button {
     gap: 20px;
 }
 
+.content {
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.score-view{
+    justify-content: space-around;
+    height: 15vh;
+    align-items: center;
+    width: 100%;
+}
+
+.score-section {
+    gap: 20px;
+    justify-content: center;
+    font-size: 2em;
+}
+
 .controls {
-    display: flex;
-    flex-direction: row;
     gap: 50px;
 }
 
-.human, .computer {
-    display: flex;
-    flex-direction: column;
+.human {
+    gap: 10px;
 }
 
-.player-choice > img {
+.computer {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.player-choice > img, .computer-choice > img {
     border: 10px solid var(--notSelected);
+    border-radius: 20%;
     width: 100px;
     height: 100px;
+}
+
+.seperator{
+    justify-content: center;
+    font-size:3em;
+}
+
+.computer-choice{
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    height: 3em;
+    width: 100%;
+    background-color: var(--darkBG);
+    color: var(--lightText);
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
 }

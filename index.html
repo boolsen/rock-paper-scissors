@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="javascript.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css" />  
+    
 </head>
-<body>
-    <div class="header">
+<body class="column">
+    <div class="header row">
         <div class="header-text">
             <h1>Rock, Paper, Scissors</h1>
         </div>
@@ -17,27 +21,34 @@
         </div>
 
     </div>
-    <div class="score-view">
-        <div class="score-header"></div>
-        <div class="human"></div>
-        <div class="computer"></div>
-
-    </div>
-    <div class="controls">
-        <div class="human">
-            <h2>Player choice:</h2>
-            <button class="player-choice rock" id="rock"><img src="/img/rock.jpg"></button>
-            <button class="player-choice paper" id="paper"><img src="/img/paper.jpg"></button>
-            <button class="player-choice scissors" id="scissors"><img src="/img/scissors.jpg"></button>
+    <div class="content column">
+        <div class="score-view column">
+            <div class="score-header"><h1>Score</h1></div>
+            <div class="score-section column">
+                <div class="human">
+                    Player: <span class="player-score-text">0</span>
+                </div>
+                <div class="computer">
+                    Computer: <span class="computer-score-text">0</span>
+                </div>
+            </div>
         </div>
-        <div class="computer">
-            <h2>Computer choice:</h2>
-            <img id="computer-choice-image">
+        <div class="controls row">
+            <div class="human column">
+                <h2>Player choice:</h2>
+                <button class="player-choice rock" id="rock"><img src="/img/rock.jpg"></button>
+                <button class="player-choice paper" id="paper"><img src="/img/paper.jpg"></button>
+                <button class="player-choice scissors" id="scissors"><img src="/img/scissors.jpg"></button>
+            </div>
+            <div class="seperator column"><em>Vs.</em></div>
+            <div class="computer column">
+                <h2>Computer choice:</h2>
+                <div class="computer-choice column"><img id="computer-choice-image" src="/img/questionmark.png"></div>
+            </div>
         </div>
-        
     </div>
-    <div class="footer">
-
+    <div class="footer row">
+        Images sourced from freely availble assets
     </div>
 
     
